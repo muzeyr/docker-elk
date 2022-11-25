@@ -3,8 +3,8 @@
 ## https://github.com/elastic/kibana/blob/main/src/dev/build/tasks/os_packages/docker_generator/templates/kibana_yml.template.ts
 #
 server.name: kibana
-server.host: elk.finds.world
-elasticsearch.hosts: [ http://elk.finds.world:9200 ]
+server.host: 0.0.0.
+elasticsearch.hosts: [ http://localhost:9200 ]
 
 monitoring.ui.container.elasticsearch.enabled: true
 monitoring.ui.container.logstash.enabled: true
@@ -17,13 +17,13 @@ elasticsearch.password: ${KIBANA_SYSTEM_PASSWORD}
 ## Fleet
 ## https://www.elastic.co/guide/en/kibana/current/fleet-settings-kb.html
 #
-xpack.fleet.agents.fleet_server.hosts: [ http://elk.finds.world:8220 ]
+xpack.fleet.agents.fleet_server.hosts: [ http://localhost:8220 ]
 
 xpack.fleet.outputs:
   - id: fleet-default-output
     name: default
     type: elasticsearch
-    hosts: [ http://elk.finds.world:9200 ]
+    hosts: [ http://localhost:9200 ]
     is_default: true
     is_default_monitoring: true
 
@@ -76,6 +76,6 @@ xpack.fleet.agentPolicies:
           - type: apm
             vars:
               - name: host
-                value: elk.finds.world:8200
+                value: localhost:8200
               - name: url
-                value: http://elk.finds.world:8200
+                value: http://localhost:8200
